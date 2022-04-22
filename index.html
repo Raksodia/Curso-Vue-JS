@@ -9,15 +9,19 @@
 <body>
     <div id="app">
         {{ mensaje }}
-        <ul><li v-for="(show,index) in tvshows" :key="index" >
+        <ul v-if="mostrar">
+            <li v-for="(show,index) in tvshows" :key="index" >
             <strong>{{show.name}}</strong> ({{show.seasons}} Temporadas)
-        </li></ul>
+            </li>
+        </ul>
+        <ul v-else> No hay datos</ul>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js"></script>
     <script>
         const app = new Vue({
             el: '#app',
             data: {
+                mostrar : false, 
                 mensaje: 'Hola Vue.js',
                 tvshows: [
                     {name: 'Games of Thrones', seasons: 7},

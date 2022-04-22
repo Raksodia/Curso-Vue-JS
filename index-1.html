@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{ mensaje }}
+        <ul v-show="mostrar">
+            <li v-for="(show,index) in tvshows" :key="index" >
+            <strong>{{show.name}}</strong> ({{show.seasons}} Temporadas)
+            </li>
+        </ul>
+        <ul v-hide> No hay datos</ul>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                mostrar : false, 
+                mensaje: 'Hola Vue.js',
+                tvshows: [
+                    {name: 'Games of Thrones', seasons: 7},
+                    {name: 'Breaking Bad', seasons: 5},
+                    {name: 'LOST', seasons: 6},
+                    {name: 'Battlestar Galactica', seasons: 4},
+                ]
+            }
+        })
+    </script>
+</body>
+</html>

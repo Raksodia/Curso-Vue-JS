@@ -10,23 +10,35 @@
     <div id="app">
         {{ mensaje }}
         <button v-on:click="changeVisibility">mostrar/Ocultar</button>
-        <ul v-if="mostrar">
-            <tv-show
-                v-for="(show, index) in tvshows"
-                :key="index"
-                :name="show.name"
-                :seasons="show.seasons"
-            >    
-            </tv-show>
-            <br>
-            <li v-for="(show,index) in tvshows" :key="index" >
-            <strong>{{show.name}}</strong> ({{show.seasons}} Temporadas)
-            </li>
-        </ul>
-        <ul v-else> No hay datos</ul>
+        <tv-show-list v-if="mostrar"></tv-show-list>
+        
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js"></script>
     <script>
+        Vue.component('tv-show-list',{
+            data: function (){
+                return {
+                    tvshows: [
+                        {name: 'Games of Thrones', seasons: 7},
+                        {name: 'Breaking Bad', seasons: 5},
+                        {name: 'LOST', seasons: 6},
+                        {name: 'Battlestar Galactica', seasons: 4},
+                    ]   
+                }
+            },
+            template: `
+                <ul>
+                    <tv-show
+                        v-for="(show, index) in tvshows"
+                        :key="index"
+                        :name="show.name"
+                        :seasons="show.seasons"
+                    >    
+                    </tv-show>
+                </ul>
+            `
+        })
+
         Vue.component('tv-show', {
             props:{
                 name: String,
@@ -42,14 +54,9 @@
         const app = new Vue({
             el: '#app',
             data: {
-                mostrar : true, 
+                mostrar : false, 
                 mensaje: 'Hola Vue.js',
-                tvshows: [
-                    {name: 'Games of Thrones', seasons: 7},
-                    {name: 'Breaking Bad', seasons: 5},
-                    {name: 'LOST', seasons: 6},
-                    {name: 'Battlestar Galactica', seasons: 4},
-                ]
+                
             },
             methods:{
                 changeVisibility: function(){

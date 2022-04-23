@@ -8,17 +8,17 @@
 </head>
 <body>
     <div id="app">
-        
+        <template id="todo-add">    
+            <div>
+                <input type="text" v-model="title" />
+                <button @click="onClick">Añadir</button>
+            </div>
+        </template>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js"></script>
     <script>
         Vue.component('todo-add', {
-            template: `
-                <div>
-                    <input type="text" v-model="title" />
-                    <button @click="onClick">Añadir</button>
-                </div>
-            `, 
+            template: '#todo-add', 
             data : function(){
                 return {
                     title:null
